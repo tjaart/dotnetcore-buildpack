@@ -51,11 +51,13 @@ function publish() {
 }
 
 if [ -e "$BUILD_DIR/Procfile" ]; then
+    echo "=>>>>>>>> PROCFILE DETECTED <<<<<<<<<<="
     numberOfProjects=0
 	while read line || [[ -n "$line" ]];
     do
         if [[ $line =~ [0-9A-Za-z\.]+ ]]; then
             PROJECT_NAME=${BASH_REMATCH[0]}
+            echo "=>>>>>>>> PUBLISH <<<<<<<<<<="
             echo publish $PROJECT_NAME $BUILD_DIR/heroku_output/$PROJECT_NAME
 			publish $PROJECT_NAME $BUILD_DIR/heroku_output/$PROJECT_NAME
 			numberOfProjects=$((numberOfProjects+1))
