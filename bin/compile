@@ -46,7 +46,6 @@ cd $BUILD_DIR
 dotnet --info
 
 function publish() {
-	echo "publish $1"
 	dotnet publish $1 --output $2 --configuration Release --runtime linux-x64
 }
 
@@ -55,7 +54,7 @@ if [ -e "$BUILD_DIR/Procfile" ]; then
     numberOfProjects=0
 	while read line || [[ -n "$line" ]];
     do
-        if [[ $line =~ [0-9A-Za-z\.]+ ]]; then
+        if [[ $line =~ \./[0-9A-Za-z\.]+ ]]; then
             PROJECT_NAME=${BASH_REMATCH[0]}
             echo "=>>>>>>>> PUBLISH <<<<<<<<<<="
             echo publish $PROJECT_NAME $BUILD_DIR/heroku_output/$PROJECT_NAME
