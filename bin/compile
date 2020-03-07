@@ -55,7 +55,7 @@ if [ -e "$BUILD_DIR/Procfile" ]; then
 	while read line || [[ -n "$line" ]];
     do
         if [[ $line =~ [0-9A-Za-z\.]+ ]]; then
-            PROJECT_NAME=${BASH_REMATCH[0]%.dll}
+            PROJECT_NAME=${BASH_REMATCH[0]}
 			publish $PROJECT_NAME $BUILD_DIR/heroku_output/$PROJECT_NAME
 			numberOfProjects=$((numberOfProjects+1))
         fi
